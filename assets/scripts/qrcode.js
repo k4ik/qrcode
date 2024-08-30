@@ -45,3 +45,13 @@ function generateQrCode(url) {
         correctLevel: QRCode.CorrectLevel.H
     });
 }
+
+function downloadQrCode() {
+    let qrcode = document.querySelector('#qrcode canvas');
+
+    let qrDataUrl = qrcode.toDataURL("image/png");
+    let downloadLink = document.createElement("a");
+    downloadLink.href = qrDataUrl;
+    downloadLink.download = "qrcode.png";
+    downloadLink.click();
+}
