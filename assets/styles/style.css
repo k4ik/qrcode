@@ -7,7 +7,7 @@
 :root {
     --white: #F2F5F9;
     --blue: #3662E3;
-    --black:#111729;
+    --black: #111729;
     --blue2: #364153;
     --grey: #4e80ee33;
 }
@@ -22,6 +22,7 @@ section, main {
 main {
     height: 100vh;
     background-color: var(--black);
+    padding: 20px;
 }
 
 main > img {
@@ -32,6 +33,9 @@ main > img {
 
 section {
     gap: 30px;
+    width: 100%; 
+    display: flex;
+    justify-content: center; 
 }
 
 .form {
@@ -41,7 +45,9 @@ section {
     align-items: center;
     border: 1px solid var(--blue);
     background: transparent;
-    width: 500px;
+    max-width: 500px;
+    width: 100%;
+    box-sizing: border-box; 
 }
 
 input, button {
@@ -66,14 +72,13 @@ button {
     padding: 5px 15px;
     color: var(--white);
     font-weight: bold;
-    max-width: 150px;
+    max-width: 130px;
 }
 
 button:hover {
     transition: .5s ease-in-out;
     background-color: var(--blue2);
 }
-
 
 .qrcode {
     display: none;
@@ -101,7 +106,7 @@ button:hover {
     display: flex;
     justify-content: center;
     border: none;
-    gap: 20px;
+    gap: 10px;
 }
 
 .qrcode-form button {
@@ -109,9 +114,8 @@ button:hover {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    width: 150px;
+    width: 120px;
 }
-
 
 .logo-top {
     position: absolute;
