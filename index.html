@@ -10,14 +10,21 @@
     <main>
         <img src="assets/images/bg.svg" alt="bg illustration">
         <section>
-            <img src="assets/images/logo.svg" alt="logo">
-            <form>
-                <fieldset>
-                    <input type="text" name="url" placeholder="Enter a url">
-                    <button>QR code</button>
-                </fieldset>
+            <img src="assets/images/logo.svg" alt="logo" id="logo">
+            <form class="form">
+                <input type="text" name="url" id="url" placeholder="Enter a url">
+                <button type="submit" onclick="generateQrCode(event)">QR code</button>
+            </form>
+        </section>
+        <section class="qrcode">
+            <div id="qrcode"></div>
+            <form class="qrcode-form">
+                <button>Download <img src="assets/images/downlaod.svg" alt="download" /></button>
+                <button>Share <img src="assets/images/share.svg" alt="share" /></button>
             </form>
         </section>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.js"></script>
+    <script src="assets/scripts/qrcode.js"></script>
 </body>
 </html>
