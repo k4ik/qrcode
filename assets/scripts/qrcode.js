@@ -1,24 +1,20 @@
-function generateQrCode(event) {
+function submitForm(event) {
     event.preventDefault();
 
-    let qrcodeContainer = document.getElementById("qrcode");
     let url = document.getElementById('url').value;
 
-    if (url == "") {
+    if(!verificateUrl(url)) {
         return;
     }
+    animation()
+    generateQrCode(url)
+}
+
+function animation() {
+    let qrcodeContainer = document.getElementById("qrcode")
 
     let formSection = document.querySelector('main section:first-of-type');
     formSection.classList.add('section-hide');
-
-    let qrcode = new QRCode(document.getElementById('qrcode'), {
-        text: url,
-        width: 128,
-        height: 128,
-        colorDark: "#000000",
-        colorLight: "#FFFFFF",
-        correctLevel: QRCode.CorrectLevel.H
-    });
 
     setTimeout(() => {
         formSection.style.display = 'none'; 
@@ -29,6 +25,23 @@ function generateQrCode(event) {
         let logo = document.getElementById('logo');
         logo.classList.add('logo-top');
     }, 500); 
+}
 
-    
+function verificateUrl(url) {
+    if (url == "") {
+        return false;
+    }
+
+    return true;
+}
+
+function generateQrCode(url) {
+    let qrcode = new QRCode(document.getElementById('qrcode'), {
+        text: url,
+        width: 128,
+        height: 128,
+        colorDark: "#000000",
+        colorLight: "#FFFFFF",
+        correctLevel: QRCode.CorrectLevel.H
+    });
 }
