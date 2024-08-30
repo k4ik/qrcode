@@ -46,7 +46,9 @@ function generateQrCode(url) {
     });
 }
 
-function downloadQrCode() {
+function downloadQrCode(event) {
+    event.preventDefault();
+
     let qrcode = document.querySelector('#qrcode canvas');
 
     let qrDataUrl = qrcode.toDataURL("image/png");
@@ -56,24 +58,23 @@ function downloadQrCode() {
     downloadLink.click();
 }
 
-function shareQrCode() {
-    let qrcodeCanvas = document.querySelector('#qrcode canvas');
+function shareQrCode(event) {
+    event.preventDefault();
 
-    qrcodeCanvas.toBlob(function(blob) {
-        let file = new File([blob], "qrcode.png", { type: "image/png" });
+    let urlInput = document.getElementById("url");
 
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            navigator.share({
-                files: [file],
-                title: 'QR Code',
-                text: 'Here is your QR code.',
-            }).then(() => {
-                console.log('Successfully shared');
-            }).catch((error) => {
-                console.error('Error sharing:', error);
-            });
-        } else {
-            alert("Sharing not supported in this browser.");
-        }
+    if (!urlInput) {
+        alert("URL input not found.");
+        return;
+    }
+
+    urlInput.select();
+    urlInput.setSelectionRange(0, 99999); 
+
+    navigator.clipboard.writeText(urlInput.value).then(() => {
+        alert("Copied the text: " + urlInput.value);
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+        alert("Failed to copy the text.");
     });
 }
