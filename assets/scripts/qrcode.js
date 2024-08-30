@@ -55,3 +55,25 @@ function downloadQrCode() {
     downloadLink.download = "qrcode.png";
     downloadLink.click();
 }
+
+function shareQrCode() {
+    let qrcodeCanvas = document.querySelector('#qrcode canvas');
+
+    qrcodeCanvas.toBlob(function(blob) {
+        let file = new File([blob], "qrcode.png", { type: "image/png" });
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            navigator.share({
+                files: [file],
+                title: 'QR Code',
+                text: 'Here is your QR code.',
+            }).then(() => {
+                console.log('Successfully shared');
+            }).catch((error) => {
+                console.error('Error sharing:', error);
+            });
+        } else {
+            alert("Sharing not supported in this browser.");
+        }
+    });
+}
